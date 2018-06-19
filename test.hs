@@ -105,6 +105,19 @@ pertenece e [] = False
 pertenece e (x:xs) | e == x = True
                    | otherwise = pertenece e xs
                    
-agregarATodas :: Integer -> [[Integer]] -> [[Integer]] 
+agregarATodas :: a -> [[a]] -> [[a]] 
 agregarATodas a [] = []
 agregarATodas a (x:xs) = (a:x):(agregarATodas a xs)
+
+generarDezplazamientos :: Integer -> [Camino] 
+generarDezplazamientos 0 = []
+generarDezplazamientos 1 = [[Izquierda],[Abajo]]
+generarDezplazamientos k = agregarATodas Derecha (generarDezplazamientos (k-1)) ++ agregarATodas Izquierda (generarDezplazamientos (k-1)) ++ agregarATodas Arriba (generarDezplazamientos (k-1)) ++ agregarATodas Abajo (generarDezplazamientos (k-1))
+
+caminosDeSalidaEnKMovs :: CampoMinado -> Integer -> [Camino]
+caminosDeSalidaEnKMovs a b = caminosDeSalidaEnKMovsAux a (generarDezplazamientos b)
+
+caminosDeSalidaEnKMovsAux :: CampoMinado -> [Camino] -> [Camino]
+caminosDeSalidaEnKMovsAux a [] = []
+caminosDeSalidaEnKMovsAux a (x:xs) | (caminoDeSalida a x) == True = x : caminosDeSalidaEnKMovsAux a xs 
+                                   | otherwise = caminosDeSalidaEnKMovsAux a xs

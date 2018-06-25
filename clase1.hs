@@ -1,372 +1,175 @@
-cuadradoTriple x y z = x * x + y * y + z * z
-
-doble x = x + x
-
-suma x y = x + y
-
-normaVectorial :: (Float,Float) -> Float
-normaVectorial p = sqrt((tupleFst p)**2 + (tupleSnd p)**2)
-
-funcionConstante8 x = 8
-
-respuestaATodo = 42
-
-tutorialGuarda n | n == 0 = 1
-                 | n /= 0 = 0
-
-signo n | n > 0 = 1
-        | n == 0 = 0
-        | otherwise = (-1)
-
-absoluto n = n * (signo n)
-
-maximo x y | x > y = x
-           | otherwise = y
-
-maximo3 x y z = maximo (maximo x y) z
-
-tutorialTipado :: Bool -> Bool
-tutorialTipado x = not x
-
-tutorialTipado2 :: Bool -> Float
-tutorialTipado2 x = pi
-
-tutorialTipadoFuncion3 :: Integer -> Integer -> Bool -> Bool
-tutorialTipadoFuncion3 x y b = b || (x > y)
-
-esPar :: Integer -> Bool
-esPar x = (mod x 2) == 0
-
-esMultiploDe :: Integer -> Integer -> Bool
-esMultiploDe x y = (mod x y) == 0
-
-identidad :: a -> a
-identidad x = x
-
-tupleFst :: (a,a) -> a
-tupleFst (x,y) = x
-
-tupleSnd :: (a,a) -> a
-tupleSnd (x,y) = y
-
-crearPar :: a -> b -> (a,b)
-crearPar x y = (x,y)
-
-invertir :: (a,b) -> (b,a)
-invertir (a,b) = (b,a)
-
-distanciaPuntos :: (Float,Float) -> (Float,Float) -> Float
-distanciaPuntos (a,b) (c,d) = sqrt ((c-a)^2+(b-d)^2)
-
-f1 :: Float -> (Float,Float,Float)
-f1 x = (2 * x,x^2,x-7)
-
-f2 :: Integer -> Integer
-f2 n | (mod n 2)==0 = div n 2
-     | otherwise = n+1
-
-f :: Integer -> Integer
-f n | (mod n 6)==0 = (div (n^2) 2)
-    | otherwise = (3 * n) + 1
-
-g :: (Integer,Integer) -> Integer
-g (n,m) = n * (m+1)
-
-h :: (Integer,Integer) -> Integer
-h (a,b) = f (g (a,b))
-
-unidades :: Integer -> Integer
-unidades a = mod a 10
-
-sumaUnidades3 :: Integer -> Integer -> Integer -> Integer
-sumaUnidades3 a b c = (unidades a) + (unidades b) + (unidades c)
-
-todosImpares :: Integer -> Integer -> Integer -> Bool
-todosImpares a b c = not(esPar a) && not(esPar b) && not(esPar c)
-
-alMenosUnImpar :: Integer -> Integer -> Integer -> Bool
-alMenosUnImpar a b c = not(esPar a) || not(esPar b) || not(esPar c)
-
-alMenosDosImpares :: Integer -> Integer -> Integer -> Bool
-alMenosDosImpares a b c | not(esPar a) && not(esPar b) = True
-                        | not(esPar b) && not(esPar c) = True
-                        | not(esPar a) && not(esPar c) = True
-                        | otherwise = False
-
-alMenosDosPares :: Integer -> Integer -> Integer -> Bool
-alMenosDosPares a b c | (esPar a) && (esPar b) = True
-                      | (esPar b) && (esPar c) = True
-                      | (esPar a) && (esPar c) = True
-                      | otherwise = False
-
-r1 :: Integer -> Integer -> Bool
-r1 a b = mod (a+b) 2 == 0
-
-r2 :: Integer -> Integer -> Bool
-r2 a b = (mod (2*a+3*b) 5) == 0
-
-r3 :: Integer -> Integer -> Bool
-r3 a b = (mod a 10) /= (mod b 10) && (mod a 10) /= (mod (a*b) 10) && (mod b 10) /= (mod (a*b) 10)
-
-r4 :: Float -> Float -> Bool
-r4 a b | (a >= 3) && (b >= 3) = True
-       | (a < 3) && (b < 3) = True
-       | otherwise = False
-
-r5 :: Float -> Float -> Bool
-r5 a b | (a < 3) && (b < 3) = True
-       | (a >= 3 && a < 7) && (b >= 3 && b < 7) = True  
-       | (a >= 7) && (b >= 7) = True
-       | otherwise = False
-
-factorial :: Integer -> Integer
-factorial 0 = 1
-factorial n = n * factorial(n-1)
-
-sc :: Integer -> Integer
-sc 0 = 0
-sc n = sc (n-1) + n^2
-
-fib :: Integer -> Integer
-fib 0 = 1
-fib 1 = 1
-fib a = fib(a-1) + fib(a-2) 
-
-ej16y20a :: Integer -> Integer
-ej16y20a 1 = 2
-ej16y20a n = (2 * n * ej16y20a (n-1)) + (2^(n+1)*factorial n)
-
-ej16y20b :: Integer -> Integer
-ej16y20b 1 = (-3)
-ej16y20b 2 = 2
-ej16y20b n = n * ej16y20b (n-1) + 2 * (n+1) * ej16y20b (n-1)
-
-ej16y20c :: Integer -> Integer
-ej16y20c 1 = (-3)
-ej16y20c 2 = 6
-ej16y20c n | (mod n 2) == 1 = (-1)*ej16y20c (n-1) - 3
-           | otherwise = ej16y20c (n-1) + ej16y20c (n-2) + 9
-
-ej5a :: Integer -> Integer
-ej5a 0 = 1
-ej5a n = (2^n)*ej5a (n-1)
-
-ej5b :: Integer -> Float -> Float
-ej5b 0 q = 0
-ej5b n q = (q^n) + ej5b (n-1) q
-
-ej5c :: Integer -> Float -> Float
-ej5c 0 q = 0
-ej5c n q = ej5c (n-1) q + q^(n-1) + q^n
-
-ej5d :: Integer -> Float -> Float
-ej5d 0 q = 1/2
-ej5d n q = (ej5d (n-1) q) + (q^(2*n))/2 + (q^(2*n-1))/2 - (q^n)/2
-
-soyPar :: Integer -> Bool
-soyPar 0 = True
-soyPar 1 = False
-soyPar n = soyPar (n-2)
-
-mult3 :: Integer -> Bool
-mult3 0 = True
-mult3 1 = False
-mult3 2 = False
-mult3 n = mult3 (n-3)
-
-sumaImpares :: Integer -> Integer
-sumaImpares 1 = 1
-sumaImpares n = (2*n)-1 + sumaImpares (n-1)
-
-doblefact :: Integer -> Integer
-doblefact 2 = 2
-doblefact n = n * doblefact (n-2)
-
-notermina :: Integer -> Integer
-notermina n | n < 0 = notermina (n-1)
-            | otherwise = n
-
-eAprox :: Integer -> Float
-eAprox 0 = 1
-eAprox n = eAprox (n-1) + 1/fromInteger (factorial n)
-
-e :: Float
-e = eAprox 100
-
-parteEntera :: Float -> Integer
-parteEntera x | x<0 = (-1)*parteEntera (x*(-1))
-              | x<1 = 0
-              | otherwise = parteEntera (x-1) + 1
-
-algDivision :: Integer -> Integer -> (Integer,Integer)
-algDivision a d | a<d = (0,a)
-                | otherwise = (1 + fst qr,snd qr)
-                where qr = algDivision (a-d) d
-
-sumaDivisores :: Integer -> Integer
-sumaDivisores n = sumaDivisoresHasta n n
-
-sumaDivisoresHasta :: Integer -> Integer -> Integer
-sumaDivisoresHasta n 1 = 1
-sumaDivisoresHasta n m | mod n m == 0 = m + (sumaDivisoresHasta n (m-1))
-                       | otherwise = (sumaDivisoresHasta n (m-1))
-
-menorDivisor :: Integer -> Integer
-menorDivisor n = auxMenorDivisor n 2
-
-auxMenorDivisor :: Integer -> Integer -> Integer
-auxMenorDivisor n m | mod n m == 0 = m
-                    | otherwise = auxMenorDivisor n (m+1)
-
-esPrimo :: Integer -> Bool
-esPrimo n = (menorDivisor n) == n
-
-sumatoriaDoble :: Integer -> Integer -> Integer
-sumatoriaDoble n m = auxSumatoriaDoble n m m
-
-auxSumatoriaDoble :: Integer -> Integer -> Integer -> Integer
-auxSumatoriaDoble 1 1 a = 1 
-auxSumatoriaDoble n 1 a = n + auxSumatoriaDoble (n-1) a a
-auxSumatoriaDoble n m a = (n^m) + auxSumatoriaDoble n (m-1) a 
-
-sumaPotencias :: Float -> Integer -> Integer -> Float
-sumaPotencias q n m = auxSumaPotencias q n m m
-
-auxSumaPotencias :: Float -> Integer -> Integer -> Integer -> Float
-auxSumaPotencias q 1 1 _ = q^2
-auxSumaPotencias q n 1 a = q^(n+1) + auxSumaPotencias q (n-1) a a
-auxSumaPotencias q n m a = q^(n+m) + auxSumaPotencias q n (m-1) a
-
-sumaRacionales :: Integer -> Integer -> Float
-sumaRacionales n m = auxSumaRacionales n m m
-
-auxSumaRacionales :: Integer -> Integer -> Integer -> Float
-auxSumaRacionales 1 1 _ = fromInteger 1
-auxSumaRacionales n 1 a = fromInteger n + auxSumaRacionales (n-1) a a
-auxSumaRacionales n m a = (fromInteger n)/(fromInteger m) + auxSumaRacionales n (m-1) a
-
-yLogico :: Bool -> Bool -> Bool
-yLogico True True = True
-yLogico _ _ = False
-
-oLogico :: Bool -> Bool -> Bool
-oLogico False False = False
-oLogico _ _ = True
-
-implica :: Bool -> Bool -> Bool
-implica True False = False
-implica _ _ = True
-
-sumaGaussiana :: Integer -> Integer
-sumaGaussiana 0 = 0
-sumaGaussiana n = n + sumaGaussiana (n-1)
-
-algunoEsCero :: (Integer,Integer,Integer) -> Bool
-algunoEsCero (0,_,_) = True
-algunoEsCero (_,0,_) = True
-algunoEsCero (_,_,0) = True
-algunoEsCero _ = False
-
-productoInterno :: (Float,Float) -> (Float,Float) -> Float
-productoInterno (x1,y1) (x2,y2) = x1*x2 + y1*y2
-
-esSumaDeDosPrimos :: Integer -> Bool
-esSumaDeDosPrimos n = auxEsSumaDeDosPrimos 1 (n-1)
-
-auxEsSumaDeDosPrimos :: Integer -> Integer -> Bool
-auxEsSumaDeDosPrimos n 1 = False
-auxEsSumaDeDosPrimos n m = (esPrimo n && esPrimo m) || auxEsSumaDeDosPrimos (n+1) (m-1)
-
-conjeturaGoldbach :: Integer -> Bool
-conjeturaGoldbach 4 = True
-conjeturaGoldbach n = esSumaDeDosPrimos n && conjeturaGoldbach (n-2)
-
-sumaDigitos :: Integer -> Integer
-sumaDigitos 0 = 0
-sumaDigitos n = mod n 10 + sumaDigitos (div n 10)
-
-digitosIguales :: Integer -> Bool
-digitosIguales n | n < 10 = True
-                 | otherwise = mod n 10 == mod (div n 10) 10 && digitosIguales (div n 10)
-
-collatz :: Integer -> Integer
-collatz 1 = 1
-collatz n | mod n 2 == 0 = 1 + collatz (div n 2)
-          | otherwise = 1 + collatz ((3*n)+1)
-
-bestCollatz :: Integer -> Integer
-bestCollatz n = auxBestCollatz n n
-
-auxBestCollatz :: Integer -> Integer -> Integer
-auxBestCollatz 1 m = m
-auxBestCollatz n m | collatz n > collatz m = auxBestCollatz (n-1) n
-                   | otherwise = auxBestCollatz (n-1) m
-
-listar :: a -> a -> a -> [a]
-listar a b c = [a,b,c]
-
-pertenece :: Integer -> [Integer] -> Bool
-pertenece v [] = False
-pertenece v (x:xs) = v == x || pertenece v xs 
-
-productoriaSinPM :: [Integer] -> Integer
-productoriaSinPM x | x == [] = 1
-                   | otherwise = head x * productoriaSinPM (tail x)
-
-productoriaConPM :: [Integer] -> Integer 
-productoriaConPM (x:[]) = x
-productoriaConPM (x:xs) = x * productoriaConPM xs
-
-sumarNSinPM :: Integer -> [Integer] -> [Integer]
-sumarNSinPM n xs | (tail xs) == [] = (head xs) + n : []
-                 | otherwise = (head xs) + n : sumarNSinPM n (tail xs)
-
-sumarNConPM :: Integer -> [Integer] -> [Integer]
-sumarNConPM n (x:[]) = x+n : []
-sumarNConPM n (x:xs) = x+n : sumarNConPM n xs
-
-ultimoLista :: [Integer] -> Integer
-ultimoLista (x:[]) = x
-ultimoLista (_:xs) = ultimoLista xs
-
-sumarElUltimo :: [Integer] -> [Integer]
-sumarElUltimo x = sumarNConPM (ultimoLista x) x 
-
-
-sumarElPrimero :: [Integer] -> [Integer]
-sumarElPrimero (x:xs) = sumarNConPM x (x:xs)
-
-pares :: [Integer] -> [Integer]
-pares [] = []
-pares (x:xs) | mod x 2 == 0 = x: pares xs
-             | otherwise = pares xs
-
-multiplosDeN :: Integer -> [Integer] -> [Integer]
-multiplosDeN n [] = []
-multiplosDeN n (x:xs) | mod x n == 0 = x: multiplosDeN n xs
-                      | otherwise = multiplosDeN n xs
-
-quitar :: Integer -> [Integer] -> [Integer]
-quitar n [] = []
-quitar n (x:xs) | x == n = xs
-                | otherwise = x:(quitar n xs)
-
-hayRepetidos :: [Integer] -> Bool
-hayRepetidos [] = False
-hayRepetidos (x:xs) = pertenece x xs || hayRepetidos xs
-
-eliminarRepetidos :: [Integer] -> [Integer]
-eliminarRepetidos [] = []
-eliminarRepetidos (x:xs) | pertenece x xs = eliminarRepetidos xs
-                         | otherwise = x : eliminarRepetidos xs
-
-maximo2 :: [Integer] -> Integer
-maximo2 (x:[]) = x
-maximo2 (x:xs) | x > maximo2 xs = x
-               | otherwise = maximo2 xs 
-
-ordenar :: [Integer] -> [Integer]
-ordenar (x:[]) = [x]
-ordenar (x:xs) | x <= head ts = x:ts
-               | otherwise = ordenar (xs++[x])
-               where ts = ordenar xs
+data Desplazamiento = Arriba | Abajo | Izquierda | Derecha deriving (Show, Eq)
+
+type Conjunto a = [a]
+type Camino = [Desplazamiento]
+type Posicion = (Integer,Integer)
+type Tablero a = [[a]]
+type CampoMinado = Tablero Bool
+type TableroAF = Tablero Desplazamiento
+
+-- Devuelve el tamaño de un tablero.
+tamano :: Tablero a -> Integer
+tamano t = fromIntegral(length t)
+
+-- Devuelve el valor de una posición de un tablero.
+-- Notar que la primera posición de arriba a la izquierda es la (1,1).
+valor :: Tablero a -> Posicion -> a
+valor t (i,j) = iesimo (iesimo t i) j
+
+-- Devuelve el iésimo elemento de una lista. El primer elemento es el 1.
+iesimo :: [a] -> Integer -> a
+iesimo (x:xs) 1 = x
+iesimo (x:xs) n = iesimo xs (n-1)
+
+-- Determina si una posición está dentro de los límites de un tablero.
+posValida :: Tablero a -> Posicion -> Bool
+posValida t (i,j) = 1<=i && i<=n && 1<=j && j<=n
+    where n = tamano t
+    
+    
+-- Funciones de ejemplo, solo para ilustrar cómo usar los tipos definidos arriba.
+-- Determina si un desplazamiento es vertical (Arriba o Abajo).
+esVertical :: Desplazamiento -> Bool
+esVertical Arriba = True
+esVertical Abajo = True
+esVertical _ = False
+
+-- Cuenta la cantidad de Desplazamientos verticales en un Camino.
+contarDesplazamientosVerticales :: Camino -> Integer
+contarDesplazamientosVerticales [] = 0
+contarDesplazamientosVerticales (x:xs) | esVertical x = 1 + resto
+                                       | otherwise    = resto
+  where resto = contarDesplazamientosVerticales xs
+
+-- Caminos de prueba.
+camino1 = [Derecha, Abajo, Izquierda, Arriba, Abajo, Abajo, Derecha, Derecha]
+camino2 = [Derecha, Abajo, Derecha, Abajo]
+camino3 = [Derecha, Abajo, Derecha, Izquierda, Derecha, Abajo]
+camino4 = [Derecha,Derecha,Derecha]
+
+-- CampoMinado de prueba.
+campo1 :: CampoMinado
+campo1 = [ [False, False, True],
+           [True,  False, False],
+           [True,  True,  False] ]
+
+-- TableroAF de prueba, sin ciclos.
+taf1 :: TableroAF
+taf1 = [ [Derecha,  Derecha, Abajo],
+         [Arriba, Izquierda, Abajo],
+         [Arriba, Izquierda, Abajo] ]
+
+-- TableroAF de prueba, con ciclos.
+taf2 :: TableroAF
+taf2 = [ [Derecha,       Abajo, Abajo],
+         [Arriba,    Izquierda, Abajo],
+         [Izquierda, Izquierda, Izquierda] ]
+         
+-- Dado un Camino, devolvemos sus Posiciones desde el principio hasta el fin.
+caminoTuplas :: Camino -> [Posicion]
+caminoTuplas a = ((1,1):caminoTuplasAux 1 1 a) 
+
+-- Traduce desplazamientos a expresiones vectoriales correspondientes a las posiciones del tablero en base a sus coordenadas.
+caminoTuplasAux :: Integer -> Integer -> Camino -> [Posicion]
+caminoTuplasAux i j [] = []
+caminoTuplasAux i j (Derecha:xs) = (i,j+1) : caminoTuplasAux i (j+1) xs 
+caminoTuplasAux i j (Izquierda:xs) = (i,j-1) : caminoTuplasAux i (j-1) xs
+caminoTuplasAux i j (Abajo:xs) = (i+1,j) : caminoTuplasAux (i+1) j xs
+caminoTuplasAux i j (Arriba:xs) = (i-1,j) : caminoTuplasAux (i-1) j xs
+
+
+caminoValido :: Tablero a -> Camino -> Bool
+caminoValido a b = caminoValidoAux a (caminoTuplas b) 
+
+-- Si todas las posiciones de un camino son validas, el camino es valido. (Este modelo no permite salir y volver a entrar)
+caminoValidoAux :: Tablero a -> [Posicion] -> Bool
+caminoValidoAux a [] = True
+caminoValidoAux a (x:xs) = posValida a x && caminoValidoAux a xs 
+
+caminoDeSalida :: CampoMinado -> Camino -> Bool
+caminoDeSalida a b = caminoValido a b && caminoSinMinas a (caminoTuplas b) 
+
+-- Verifico que dado una lista de posiciones llega a la posicion final sin pasar por ninguna mina.
+caminoSinMinas :: CampoMinado -> [Posicion] -> Bool
+caminoSinMinas a (x:[]) = not(valor a x) && x == (tamano a,tamano a) 
+caminoSinMinas a (x:xs) = not(valor a x) && caminoSinMinas a xs
+
+caminoDeSalidaSinRepetidos :: CampoMinado -> Camino -> Bool
+caminoDeSalidaSinRepetidos a b = noHayRepetidos (caminoTuplas b) && caminoDeSalida a b 
+
+-- Verifico que dada una lista de posiciones no haya repetidos entre ellas.
+noHayRepetidos :: [Posicion] -> Bool
+noHayRepetidos (x:[]) = True
+noHayRepetidos (x:xs) = not(pertenece x xs) && noHayRepetidos xs
+
+-- Verifico que una posicion no se repita dentro de una lista de posiciones
+pertenece :: Posicion -> [Posicion] -> Bool
+pertenece e [] = False
+pertenece e (x:xs) | e == x = True
+                   | otherwise = pertenece e xs
+                   
+-- Funcion programada en clase, agrega un elemento a una lista de listas                   
+agregarATodas :: a -> [[a]] -> [[a]] 
+agregarATodas a [] = []
+agregarATodas a (x:xs) = (x++[a]):(agregarATodas a xs)
+
+-- Genera todos los caminos de k desplazamientos para todas las direcciones desde el origen (1,1)
+-- Incluyendo aquellos que no son validos.
+generarDezplazamientos :: Integer -> [Camino] 
+generarDezplazamientos 0 = []
+generarDezplazamientos 1 = [[Derecha],[Abajo]]
+generarDezplazamientos k = agregarATodas Derecha (generarDezplazamientos (k-1)) ++ agregarATodas Izquierda (generarDezplazamientos (k-1)) ++ agregarATodas Arriba (generarDezplazamientos (k-1)) ++ agregarATodas Abajo (generarDezplazamientos (k-1))
+
+-- Toma todos los caminos posibles de k desplazamientos y filtra los caminos validos.
+salidasEnKDesp :: CampoMinado -> Integer -> [Camino]
+salidasEnKDesp a b = salidasEnKDespAux a (generarDezplazamientos b)
+
+-- Para cada camino de llegada devuelvo los que son caminos validos.
+salidasEnKDespAux :: CampoMinado -> [Camino] -> [Camino]
+salidasEnKDespAux a [] = []
+salidasEnKDespAux a (x:xs) | (caminoDeSalida a x) = (x : salidasEnKDespAux a xs) 
+                                   | otherwise = salidasEnKDespAux a xs
+
+recorrido :: TableroAF -> Posicion -> [Posicion]
+recorrido a x | (posValida a x) = x : recorrido a (siguientePosicion a x)
+              | otherwise = []
+
+-- Indica la siguiente posicion a la que se debe desplazar el robot.
+siguientePosicion :: TableroAF -> Posicion -> Posicion
+siguientePosicion a (i,j) | valor a (i,j) == Derecha = (i,j+1)
+                          | valor a (i,j) == Izquierda = (i,j-1)
+                          | valor a (i,j) == Abajo = (i+1,j)
+                          | otherwise = (i-1,j)
+                          
+escapaDelTablero :: TableroAF -> Posicion -> Bool
+escapaDelTablero a x = escapaDelTableroAux a x []
+
+-- Verifico mientras se genera el recorrido , si se da un loop o si logro salir del tablero.
+-- Si se repite una posicion, se da un loop.
+-- Si llego a una posicion que no es valida, salgo del tablero.
+escapaDelTableroAux :: TableroAF -> Posicion -> [Posicion] -> Bool
+escapaDelTableroAux a x xs | posValida a x && not(pertenece x xs) = escapaDelTableroAux a (siguientePosicion a x) (x:xs)   
+                           | posValida a x && (pertenece x xs) = False
+                           | otherwise = True
+                           
+-- Nuevo valor rotado en sentido horario.
+rotar :: Desplazamiento -> Desplazamiento
+rotar Derecha = Abajo
+rotar Abajo = Izquierda
+rotar Izquierda = Arriba
+rotar Arriba = Derecha
+
+-- Refresca el tablero dinamico en base a la siguiente posicion del robot.
+-- Busca la fila que quiero modificar
+siguienteTablero :: TableroAF -> Posicion -> TableroAF
+siguienteTablero (x:xs) (1,j) = (modificarLista x j) : xs 
+siguienteTablero (x:xs) (i,j) = x : siguienteTablero xs ((i-1),j)
+
+-- Busca la columna que quiero modificar
+modificarLista :: [Desplazamiento] -> Integer -> [Desplazamiento]
+modificarLista (x:xs) 1 = (rotar x) : xs
+modificarLista (x:xs) j = x : (modificarLista xs (j-1))
+
+cantidadDePasosParaSalir :: TableroAF -> Posicion -> Integer
+cantidadDePasosParaSalir a p | posValida a p = 1 + cantidadDePasosParaSalir (siguienteTablero a p) (siguientePosicion a p)
+                             | otherwise = 0

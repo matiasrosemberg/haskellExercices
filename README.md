@@ -1,2 +1,2 @@
 # haskellExercices
-test
+tes2t
